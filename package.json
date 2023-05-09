@@ -1,0 +1,26 @@
+{
+  "name": "namaste-react-recording",
+  "version": "1.0.0",
+  "description": "This is live course",
+  "scripts": {
+    "test": "jest"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com/vinita000/namaste-react-recording.git"
+  },
+  "author": "Vinita Kumari",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/vinita000/namaste-react-recording/issues"
+  },
+  "homepage": "https://github.com/vinita000/namaste-react-recording#readme",
+  "devDependencies": {
+    "parcel": "^2.8.3",
+    "process": "^0.11.10"
+  },
+  "dependencies": {
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0"
+  }
+}
