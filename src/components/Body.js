@@ -2,10 +2,21 @@ import ResturantCard from './ResturantCard';
 import resturantList from '../constants';
 import { useState } from 'react';
 //...restro.data.data = It is spread operator
+
+function filterData(searchText, resturants){
+  console.log(searchText);
+  // console.log(resturants);
+  // if (searchText.trim() === "") {
+  //    return resturants;
+  // }else {
+    return resturants.filter((res) => res.data.data.name.toLowerCase().includes(searchText));
+  // }
+}
 const Body = () => {
   // let searchText = "hello";
-  const [searchText, setSearchText] = useState('Biryani Pot'); // return [varibale, function to update variable] searchtext is a local state variable
-  const [click, setClick] = useState("true");
+  const [resturants, setResturants] = useState(resturantList);
+  const [searchText, setSearchText] = useState(''); // return [varibale, function to update variable] searchtext is a local state variable
+  // const [click, setClick] = useState("true");
   // function onChangeInput(){
   //   console.log(e.target.value)
   // }
@@ -25,22 +36,27 @@ const Body = () => {
         />
         <button className='search-btn' 
         onClick={()=>{
-          if(click == 'true'){
-            setClick("false")
-          }else {
-            setClick("true")
+          // filter data i.e, restro list
+          // const filterList = resturants.filter((res)=> res.data.data.name == searchText);
+          // setResturants(filterList) // update state
+          // console.log(filterList)
+          if (searchText.trim() === '') {
+            setResturants(resturantList);
+          } else{
+            const data = filterData(searchText, resturants);
+            console.log(data);
+            setResturants(data);
           }
-        }
-        }>Search</button>
+        }}>Search</button>
       </div>
       <div className='restro-list'>
-        <h1>{click}</h1>
+        {/* <h1>{click}</h1> */}
         {/* <h1>{searchText}</h1> */}
         {/* { resturantList.map((restro, key)=>(
             <ResturantCard key={restro.data.data.id} {...restro.data.data}/>
           ))
         } */}
-        { resturantList.map((restro, key)=>{
+        { resturants.map((restro, key)=>{
             return <ResturantCard key={restro.data.data.id} {...restro.data.data}/>;
         })
         }
