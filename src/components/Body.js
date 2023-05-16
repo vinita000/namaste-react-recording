@@ -20,6 +20,8 @@ const Body = () => {
   // function onChangeInput(){
   //   console.log(e.target.value)
   // }
+  // re render component with each key press in serach input
+  console.log(resturants);
   return (
     <>
       <div className='search'>
@@ -45,7 +47,7 @@ const Body = () => {
           } else{
             const data = filterData(searchText, resturants);
             console.log(data);
-            setResturants(data);
+            setResturants(data); //update state resturants
           }
         }}>Search</button>
       </div>
