@@ -42,3 +42,9 @@
   border: 1px solid #d0d0d0;
   cursor: pointer;
 }
+
+.search {
+  padding: 5px;
+  margin: 5px;
+}
+
