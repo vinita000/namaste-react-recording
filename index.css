@@ -23,7 +23,7 @@
 .card {
   width: 200px;
   border: 1px solid black;
-  height: 320px;
+  height: 340px;
   padding: 10px;
   margin: 10px;
 }
@@ -47,4 +47,5 @@
   padding: 5px;
   margin: 5px;
 }
+
 
