@@ -7,7 +7,7 @@ const ResturantCard = ({ name, cloudinaryImageId, cuisines, avgRating, slaString
     <div className='card'>
       <img src= {IMG_CDN_URL+cloudinaryImageId} />
       <h4>{name}</h4>
-      <h4>{cuisines.join(', ')}</h4>
+      <h4>{cuisines?.join(', ')}</h4> 
       <h4>{avgRating} starts</h4>
       <h4>{slaString}</h4>
     </div>
