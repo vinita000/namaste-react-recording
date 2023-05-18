@@ -1,4 +1,5 @@
 import { useState } from "react";
+import Logo from '../assets/img/food_villa.jpeg';
 // for authentication
 const loggedInUser = () =>{
   // if user authenticate 
@@ -7,7 +8,8 @@ const loggedInUser = () =>{
 
 export const Title = () => (
   <a href='/'>
-    <img alt='logo' className='logo' src='https://png.pngtree.com/png-clipart/20190516/original/pngtree-food-logo-vector-design.-restaurant-and-cafe-logo.-png-image_3628304.jpg' />
+    {/* <img alt='logo' className='logo' src='https://png.pngtree.com/png-clipart/20190516/original/pngtree-food-logo-vector-design.-restaurant-and-cafe-logo.-png-image_3628304.jpg' /> */}
+    <img alt='logo' className='logo' src={Logo} />
   </a>
 )
 

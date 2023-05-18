@@ -48,4 +48,11 @@
   margin: 5px;
 }
 
+.shimmer-card {
+  width: 200px;
+  height: 200px;
+  margin: 20px;
+  background-color: lightgrey;
+}
+
 
