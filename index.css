@@ -55,4 +55,12 @@
   background-color: lightgrey;
 }
 
+.menu {
+  display: flex;
+}
+
+.menu > menu-item > img {
+  width: 100%;
+}
+
 

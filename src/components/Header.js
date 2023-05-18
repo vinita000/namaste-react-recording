@@ -1,10 +1,8 @@
 import { useState } from "react";
 import Logo from '../assets/img/food_villa.jpeg';
-// for authentication
-const loggedInUser = () =>{
-  // if user authenticate 
-  return false;
-}
+import { Link } from 'react-router-dom'
+// SPA - Single page Application
+// Two types of routing - client side and server side routing
 
 export const Title = () => (
   <a href='/'>
@@ -20,10 +18,11 @@ const Header = () => {
       <Title />
       <div className='nav-items'>
         <ul>
-          <li>Home</li>
-          <li>About Us</li>
-          <li>Contact Us</li>
-          <li>Cart</li>
+          <li><Link to='/'> Home</Link></li>
+          {/* <a href='/about'><li>About Us</li></a> */}
+          <li><Link to='/about'>About us</Link></li>
+          <li><Link>Contact Us</Link></li>
+          <li><Link>Cart</Link></li>
         </ul>
       </div>
       { isLoggedIn ? <button onClick={()=>setIsLoggedIn(false)}>Logout</button> : <button onClick={()=>setIsLoggedIn(true)}>Login</button> }

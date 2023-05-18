@@ -2,6 +2,7 @@ import ResturantCard from "./ResturantCard";
 import resturantList from "../constants";
 import { useState, useEffect } from "react";
 import Shimmer from "./Shimmer";
+import { Link } from 'react-router-dom'
 //...restro.data.data = It is spread operator
 
 function filterData(searchText, resturants) {
@@ -110,7 +111,9 @@ const Body = () => {
         })
         } */} 
         {filteredResturants && filteredResturants.map((restro, index) => {
-          return <ResturantCard key={index} {...restro.data} />;
+          return <Link to={"/resturants/"+restro.data.id}>
+            <ResturantCard key={index} {...restro.data} />
+          </Link>;
         })}
       </div>
     </>
