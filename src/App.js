@@ -9,6 +9,7 @@ import Error from './components/Error';
 import Contact from './components/Contact'
 import Cart from './components/Cart'
 import ResturantMenu from './components/ResturantMenu'
+import Login from './components/Login';
 
  // const heading = React.createElement('h1', null, "Namaste Everyone Recording!!!!");
 
@@ -99,6 +100,10 @@ const appRouter = createBrowserRouter([
         {
           path: '/resturants/:id',
           element: <ResturantMenu />
+        },
+        {
+          path: '/login',
+          element: <Login />
         }
       ]
     }
