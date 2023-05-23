@@ -10,6 +10,8 @@ import Contact from './components/Contact'
 import Cart from './components/Cart'
 import ResturantMenu from './components/ResturantMenu'
 import Login from './components/Login';
+import Profile from './components/Profile'
+import ProfileClass from './components/ProfileClass';
 
  // const heading = React.createElement('h1', null, "Namaste Everyone Recording!!!!");
 
@@ -87,7 +89,13 @@ const appRouter = createBrowserRouter([
         },
         {
           path: '/about',
-          element: <About />
+          element: <About />,
+          children: [
+            {
+              path: 'profile', /// '/profile' ---> It means react router dom think http://localhost:3000/profile
+              element: <ProfileClass />
+            }
+          ]
         },
         {
           path: '/contact',
