@@ -14,25 +14,41 @@ class ProfileClass extends React.Component {
     console.log("child --- constructor")
   }
 //it is called after first render
-  async componentDidMount(){
+// this keyword will share with all the method of the class
+  // async componentDidMount(){
+  componentDidMount(){
     // Api calls
     // console.log(" child ---  componentDidMount");
-    const data = await fetch("https://api.github.com/users/akshaymarch7")
-    const json = await data.json();
-    console.log(json);
-    this.setState({
-      userInfo: json,
-    })
+    // const data = await fetch("https://api.github.com/users/akshaymarch7")
+    // const json = await data.json();
+    // console.log(json);
+    // this.setState({
+    //   userInfo: json,
+    // })
+    this.timer = setInterval(()=>{
+      console.log("starte timer");
+    }, 1000);
   }
 
-  // it is called after every next render...
-  componentDidUpdate(){
+  // it is called after every next render... or state update
+  componentDidUpdate(prevState, prevProps){
     console.log("componentDidUpdate");
+    if(
+      this.state.userInfo.name !== prevState.userInfo.name ){
+        console.log("code executing name");
+    }
+
+    if(
+      this.state.userInfo.location !== prevState.userInfo.location) {
+        console.log("code executing location");
+    }
   }
 
   //before it unmounting from dom or we will go go another dom that means this component  unmount from dom 
   componentWillUnmount(){
     console.log("componentWillUnmount")
+    // clear timer if we are not clear then it is called at every component
+    clearInterval(this.timer);
   }
   // process of executing..
   //constructor

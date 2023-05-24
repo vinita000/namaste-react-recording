@@ -47,7 +47,7 @@ class About extends React.Component{
       {/* <Outlet /> */}
       <Profile name={"Vinita functional"}/>
       {/* here react will collect all the props and attach to this class component  ProfileClass*/}
-      <ProfileClass name={"Vinita class Component"} xyz="test"/> 
+      {/* <ProfileClass name={"Vinita class Component"} xyz="test"/>  */}
     </div>
     )
   }
