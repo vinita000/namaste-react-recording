@@ -2,6 +2,7 @@
 import { useState, useEffect } from "react";
 import { useParams } from 'react-router-dom'
 import { IMG_CDN_URL } from '../constants';
+import useResturant from '../utils/useResturant';
 import Shimmer from "./Shimmer";
 const ResturantMenu = () => {
   // how to read dynamic params url
@@ -9,21 +10,10 @@ const ResturantMenu = () => {
   // console.log("id1", params.id)
   const [id] = params.id  // this params id pass in url params = { id: 1234 }
   // console.log("id",id)
-  const [resturant, setResturant] = useState([])
 
-  useEffect(()=> {
-    getResturantInfo();
-  }, [])
-
-  async function getResturantInfo() {
-    console.log(id)
-    const data = await fetch("https://www.swiggy.com/dapi/menu/pl?page-type=REGULAR_MENU&complete-menu=true&lat=12.913416124454908&lng=77.60696925222872&restaurantId="+params.id+"&submitAction=ENTER")
-    const json = await data.json();
-    console.log(json.data.cards)
-    // console.log(Object.values(json.data.cards[2].groupedCard.cardGroupMap.REGULAR.cards[1].card.card.itemCards))
-    setResturant(json.data.cards)
-  }
-
+  //Custom hook for get restro by passing resId = id
+  const resturant = useResturant(params.id);
+  
   return (!resturant) ? <Shimmer /> :(
     <div className="menu">
       <div>

@@ -1,6 +1,7 @@
 import { useState } from "react";
 import Logo from '../assets/img/food_villa.jpeg';
 import { Link } from 'react-router-dom'
+import useOnline from "../utils/useOnline";
 // SPA - Single page Application
 // Two types of routing - client side and server side routing
 
@@ -12,7 +13,8 @@ export const Title = () => (
 )
 
 const Header = () => {
-  const [isLoggedIn, setIsLoggedIn] = useState(false)
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const isOnline = useOnline();
 
   const handleLogout = () => {
     setIsLoggedIn(true);
@@ -28,8 +30,10 @@ const Header = () => {
           <li><Link to='/about'>About us</Link></li>
           <li><Link>Contact Us</Link></li>
           <li><Link>Cart</Link></li>
+          <li><Link to='/instamart'>Instamart</Link></li>
         </ul>
       </div>
+      <h1>{isOnline ? 'you r online..': 'oops you r offline..'}</h1>
       {isLoggedIn ? (
         <button onClick={handleLogout}>Logout</button>
       ) : (

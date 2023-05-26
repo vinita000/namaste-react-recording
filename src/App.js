@@ -1,9 +1,9 @@
-import React from 'react'; 
+import React, { lazy, Suspense } from 'react'; 
 import ReactDOM from "react-dom/client";
 import Header, { Title } from './components/Header' // default and named import
 import Footer from './components/Footer';
 import Body from './components/Body';
-import About from '../src/components/About';
+// import About from '../src/components/About';
 import { createBrowserRouter, RouterProvider, Outlet } from 'react-router-dom'
 import Error from './components/Error';
 import Contact from './components/Contact'
@@ -12,6 +12,8 @@ import ResturantMenu from './components/ResturantMenu'
 import Login from './components/Login';
 import Profile from './components/Profile'
 import ProfileClass from './components/ProfileClass';
+import Shimmer from './components/Shimmer';
+// import Instamart from './components/Instamart';
 
  // const heading = React.createElement('h1', null, "Namaste Everyone Recording!!!!");
 
@@ -63,7 +65,30 @@ import ProfileClass from './components/ProfileClass';
 
 // props = properties
  // I want my header footer comes in all pages and for all otthers pages come from outlet
+
+//One bundle will not be ggod for large application
+// how we split bundler
+//Chunking
+//dynamic bundling
+//code splitting
+//lazy loading
+// For large scale application we use different bundle accoring to usecase
+// For example we we load one component then only one component bunle load will not load other component bundle we do in chunk
+// this is also known as ondemand loading
+// dynamic import
+//for example in Swiggy Instamart is different bundle
+
+
+
+// Now will do dynamic importing using lazy() or ondemand import or code splitting or bundle chunking
+const Instamart = lazy(() => import('./components/Instamart')); // which gives dynamic importing
+//Upon On loading -> upon render -> react will suspend the loading
+
+const About = lazy(() => import('./components/About'));
+
 const AppLayout = () => {
+  // const About = lazy(() => import('./components/About'));    ---------->  Never do this..............
+
   return(
     <React.Fragment>
       <Header />
@@ -89,7 +114,7 @@ const appRouter = createBrowserRouter([
         },
         {
           path: '/about',
-          element: <About />,
+          element: <Suspense fallback={<h1>Please wait a moment...</h1>}><About /></Suspense>,
           children: [
             {
               path: 'profile', /// '/profile' ---> It means react router dom think http://localhost:3000/profile
@@ -112,6 +137,10 @@ const appRouter = createBrowserRouter([
         {
           path: '/login',
           element: <Login />
+        },
+        {
+          path: '/instamart',
+          element: <Suspense fallback={<Shimmer />}><Instamart /></Suspense> // fallback will show shiffer effect until and unless our instamart load
         }
       ]
     }
