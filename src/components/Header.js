@@ -8,7 +8,7 @@ import useOnline from "../utils/useOnline";
 export const Title = () => (
   <a href='/'>
     {/* <img alt='logo' className='logo' src='https://png.pngtree.com/png-clipart/20190516/original/pngtree-food-logo-vector-design.-restaurant-and-cafe-logo.-png-image_3628304.jpg' /> */}
-    <img alt='logo' className='logo' src={Logo} />
+    <img alt='logo' className="h-28 p-2" src={Logo} />
   </a>
 )
 
@@ -21,16 +21,16 @@ const Header = () => {
   };
   
   return(
-    <div className='header'>
+    <div className="flex justify-between bg-pink-50 shadow-xl sm:bg-blue-50 md:bg-yellow-300">
       <Title />
       <div className='nav-items'>
-        <ul>
-          <li><Link to='/'> Home</Link></li>
+        <ul className="flex py-10">
+          <li className="px-2"><Link to='/'> Home</Link></li>
           {/* <a href='/about'><li>About Us</li></a> */}
-          <li><Link to='/about'>About us</Link></li>
-          <li><Link>Contact Us</Link></li>
-          <li><Link>Cart</Link></li>
-          <li><Link to='/instamart'>Instamart</Link></li>
+          <li className="px-2"><Link to='/about'>About us</Link></li>
+          <li className="px-2"><Link>Contact Us</Link></li>
+          <li className="px-2"><Link>Cart</Link></li>
+          <li className="px-2"><Link to='/instamart'>Instamart</Link></li>
         </ul>
       </div>
       <h1>{isOnline ? 'you r online..': 'oops you r offline..'}</h1>
@@ -45,3 +45,5 @@ const Header = () => {
 }
 
 export default Header;
+
+//sm = small devices

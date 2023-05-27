@@ -32,7 +32,7 @@ const Body = () => {
   // here my useeffect depend upon searchText changes thats why we pass serachtext in array = [searchText]
 
   // custom hooks for fetching resturants
-  const [allResturants, filteredResturants] = useResturantList([])
+  const [allResturants, filteredResturants, setFilteredResturants] = useResturantList([])
 
   //here render called first and useEffect called after component render
   //empty dependency array - useEffect call after render once
@@ -54,10 +54,10 @@ const Body = () => {
     <Shimmer />
   ) : (
     <>
-      <div className="search">
+      <div className="search-container p-5 bg-pink-50 my-2">
         <input
           type="text"
-          className="search-input"
+          className="focus:bg-gray-100 p-2 m-2"
           placeholder="search"
           value={searchText}
           onChange={(e) => {
@@ -67,7 +67,8 @@ const Body = () => {
           }}
         />
         <button
-          className="search-btn"
+          className="search-btn px-5 mx-5 bg-sky-500 hover:bg-sky-700 text-white rounded-lg"
+          // style={{backgroundColor: 'green'}}
           onClick={() => {
             // filter data i.e, restro list
             // const filterList = resturants.filter((res)=> res.data.data.name == searchText);
@@ -83,7 +84,8 @@ const Body = () => {
           Search
         </button>
       </div>
-      <div className="restro-list">
+      
+      <div className="flex flex-wrap bg-purple-500">
         {/* <h1>{click}</h1> */}
         {/* <h1>{searchText}</h1> */}
         {/* { resturantList.map((restro, key)=>(
@@ -107,3 +109,19 @@ const Body = () => {
 };
 
 export default Body;
+
+
+// package for ui
+//base ui
+//material ui
+//ant ui
+//chakra ui
+
+//pros
+//development fast
+
+// cons of these library
+// makes bundle size heavy
+// we loose a lot of control how our ui looks
+// personal customization become hard
+//It does not work really well on all devices

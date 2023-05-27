@@ -29,7 +29,7 @@ const useResturantList = () => {
     }
   }
 
-  return [allResturants, filteredResturants];
+  return [allResturants, filteredResturants, setFilteredResturants];
 
 }
 

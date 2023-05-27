@@ -1,4 +1,17 @@
-.nav-items > ul {
+/* Normal native css
+scss
+inline
+component/ui libraries
+Styled Component
+Tailwind css framework 
+  - Css on the go i.e in the same file
+  - Reusablity
+  - less bundle size as it offers minimal css
+  - flexible ui - very much customizable
+  -*/ 
+/* Styled Component --- css inside javascript */
+
+/* .nav-items > ul {
   list-style-type: none;
   display: flex;
   padding: 15px;
@@ -70,3 +83,12 @@
   border-radius: 50%;
   display: inline-block;
 }
+ */
+/* .search-btn {
+  background-color: greenyellow;
+} */
+
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
