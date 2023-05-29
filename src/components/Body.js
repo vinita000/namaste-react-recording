@@ -19,7 +19,7 @@ import useOnline from "../utils/useOnline";
 //   );
 //   // }
 // }
-const Body = ({userInfo}) => {
+const Body = () => {
   // let searchText = "hello";
   const [searchText, setSearchText] = useState(""); // return [varibale, function to update variable] searchtext is a local state variable
   // const [click, setClick] = useState("true");
@@ -99,7 +99,7 @@ const Body = ({userInfo}) => {
         } */} 
         {filteredResturants && filteredResturants.map((restro, index) => {
           return <Link to={"/resturants/"+restro.data.id}>
-            <ResturantCard key={index} {...restro.data} userInfo={userInfo} />
+            <ResturantCard key={index} {...restro.data} />
           </Link>;
         })}
       </div>

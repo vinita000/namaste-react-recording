@@ -114,10 +114,7 @@ const appRouter = createBrowserRouter([
       children: [
         {
           path: '/',
-          element: <Body userInfo={{
-            userName: "Namaste React",
-            email: "support@namastedev.com"
-          }}/>
+          element: <Body />
         },
         {
           path: '/about',
