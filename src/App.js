@@ -1,4 +1,4 @@
-import React, { lazy, Suspense } from 'react'; 
+import React, { lazy, Suspense, useState } from 'react'; 
 import ReactDOM from "react-dom/client";
 import Header, { Title } from './components/Header' // default and named import
 import Footer from './components/Footer';
@@ -88,6 +88,10 @@ const About = lazy(() => import('./components/About'));
 
 const AppLayout = () => {
   // const About = lazy(() => import('./components/About'));    ---------->  Never do this..............
+  const [userInfo, setUserInfo] = useState({
+    userName: "Namaste React",
+    email: "support@namastedev.com"
+  });
 
   return(
     <React.Fragment>
@@ -110,7 +114,10 @@ const appRouter = createBrowserRouter([
       children: [
         {
           path: '/',
-          element: <Body />
+          element: <Body userInfo={{
+            userName: "Namaste React",
+            email: "support@namastedev.com"
+          }}/>
         },
         {
           path: '/about',
@@ -150,3 +157,12 @@ const appRouter = createBrowserRouter([
  const root = ReactDOM.createRoot(document.getElementById("root"));
  root.render(<RouterProvider router={appRouter} />);
 //  root.render(HeadComponent1());
+
+/**
+ * AppLayout
+ *    - userInfo - as state
+ *    -<Body userInfo={userInfo} />
+ *        -<RestroCard userInfo />
+ *              -{userInfo}
+ * --- This is known as PROPS DRILLING -- From parent to child to child
+ */

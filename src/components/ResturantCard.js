@@ -1,5 +1,5 @@
 import { IMG_CDN_URL } from '../constants';
-const ResturantCard = ({ name, cloudinaryImageId, cuisines, avgRating, slaString }) => {
+const ResturantCard = ({ name, cloudinaryImageId, cuisines, avgRating, slaString, userInfo }) => {
   // const ResturantCard = (props) => {
     // const {resturantCard} = props
     // const { name, cloudinaryImageId, cuisines, avgRating, slaString } = resturantCard.data.data
@@ -10,6 +10,7 @@ const ResturantCard = ({ name, cloudinaryImageId, cuisines, avgRating, slaString
       <h4>{cuisines?.join(', ')}</h4> 
       <h4>{avgRating} starts</h4>
       <h4>{slaString}</h4>
+      <h4>Ordered by: {userInfo.userName}</h4>
     </div>
   )
 }

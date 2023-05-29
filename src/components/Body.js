@@ -19,7 +19,7 @@ import useOnline from "../utils/useOnline";
 //   );
 //   // }
 // }
-const Body = () => {
+const Body = ({userInfo}) => {
   // let searchText = "hello";
   const [searchText, setSearchText] = useState(""); // return [varibale, function to update variable] searchtext is a local state variable
   // const [click, setClick] = useState("true");
@@ -85,7 +85,7 @@ const Body = () => {
         </button>
       </div>
       
-      <div className="flex flex-wrap bg-purple-500">
+      <div className="flex flex-wrap">
         {/* <h1>{click}</h1> */}
         {/* <h1>{searchText}</h1> */}
         {/* { resturantList.map((restro, key)=>(
@@ -99,7 +99,7 @@ const Body = () => {
         } */} 
         {filteredResturants && filteredResturants.map((restro, index) => {
           return <Link to={"/resturants/"+restro.data.id}>
-            <ResturantCard key={index} {...restro.data} />
+            <ResturantCard key={index} {...restro.data} userInfo={userInfo} />
           </Link>;
         })}
       </div>
@@ -125,3 +125,6 @@ export default Body;
 // we loose a lot of control how our ui looks
 // personal customization become hard
 //It does not work really well on all devices
+
+//State - It is state local varible which is bounded to that component only where it defined
+//props - it is pass data from one component to other componnet we can use props
