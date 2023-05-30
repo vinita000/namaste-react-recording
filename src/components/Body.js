@@ -1,11 +1,12 @@
 import ResturantCard from "./ResturantCard";
 import resturantList from "../constants";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useContext } from "react";
 import Shimmer from "./Shimmer";
 import { Link } from 'react-router-dom'
 import { filterData } from "../utils/helper";
 import useResturantList from '../utils/useResturantList'
 import useOnline from "../utils/useOnline";
+import userContext from "../utils/userContext";
 //...restro.data.data = It is spread operator
 
 // function filterData(searchText, resturants) {
@@ -20,6 +21,7 @@ import useOnline from "../utils/useOnline";
 //   // }
 // }
 const Body = () => {
+  const { user, setUserInfo } = useContext(userContext);
   // let searchText = "hello";
   const [searchText, setSearchText] = useState(""); // return [varibale, function to update variable] searchtext is a local state variable
   // const [click, setClick] = useState("true");
@@ -83,6 +85,19 @@ const Body = () => {
         >
           Search
         </button>
+        <input value={user.name} onChange={(e) => {
+          setUserInfo({
+            ...user,
+            name: e.target.value
+          });
+        }}/>
+
+        <input value={user.email} onChange={(e) => {
+          setUserInfo({
+            ...user,
+            email: e.target.value
+          });
+        }}/>
       </div>
       
       <div className="flex flex-wrap">

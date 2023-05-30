@@ -20,7 +20,7 @@ const ResturantMenu = () => {
         {console.log(resturant[0]?.card?.card?.info?.areaName)}
         <h1>Resturant id: {params.id}</h1>
         <h1>name: {resturant[0]?.card?.card?.info?.name}</h1>
-        <img src={IMG_CDN_URL+resturant[0]?.card?.card?.info?.cloudinaryImageId}/>
+        <img className="p-2 m-2" src={IMG_CDN_URL+resturant[0]?.card?.card?.info?.cloudinaryImageId}/>
         <h4>{resturant[0]?.card?.card?.info?.cuisines?.join(', ')}</h4>
         <h4>{resturant[0]?.card?.card?.info?.areaName}, {resturant[0]?.card?.card?.info?.city}</h4>
         <h4>{resturant[0]?.card?.card?.info?.costForTwoMessage}</h4>
@@ -33,7 +33,7 @@ const ResturantMenu = () => {
             Object.values(resturant[2]?.groupedCard?.cardGroupMap?.REGULAR?.cards[1]?.card?.card?.itemCards).map((item, index) => (
               <div>
                 <li key={item?.card?.info?.id}>{item?.card?.info?.name}</li>
-                <li><img src={IMG_CDN_URL+item?.card?.info?.imageId}/></li>
+                <li><img className= "m-2 p-2 h-50 w-20 " src={IMG_CDN_URL+item?.card?.info?.imageId}/></li>
                 <li>{item.card.info.description}</li>
                 <li>{item.card.info.category}</li>
                 <h4>Addons: {item.card.info.addons && item.card.info.addons.map((e)=>(

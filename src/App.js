@@ -1,23 +1,24 @@
-import React, { lazy, Suspense, useState } from 'react'; 
+import React, { lazy, Suspense, useEffect, useState } from "react";
 import ReactDOM from "react-dom/client";
-import Header, { Title } from './components/Header' // default and named import
-import Footer from './components/Footer';
-import Body from './components/Body';
+import Header, { Title } from "./components/Header"; // default and named import
+import Footer from "./components/Footer";
+import Body from "./components/Body";
 // import About from '../src/components/About';
-import { createBrowserRouter, RouterProvider, Outlet } from 'react-router-dom'
-import Error from './components/Error';
-import Contact from './components/Contact'
-import Cart from './components/Cart'
-import ResturantMenu from './components/ResturantMenu'
-import Login from './components/Login';
-import Profile from './components/Profile'
-import ProfileClass from './components/ProfileClass';
-import Shimmer from './components/Shimmer';
+import { createBrowserRouter, RouterProvider, Outlet } from "react-router-dom";
+import Error from "./components/Error";
+import Contact from "./components/Contact";
+import Cart from "./components/Cart";
+import ResturantMenu from "./components/ResturantMenu";
+import Login from "./components/Login";
+import Profile from "./components/Profile";
+import ProfileClass from "./components/ProfileClass";
+import Shimmer from "./components/Shimmer";
+import userContext from "./utils/userContext";
 // import Instamart from './components/Instamart';
 
- // const heading = React.createElement('h1', null, "Namaste Everyone Recording!!!!");
+// const heading = React.createElement('h1', null, "Namaste Everyone Recording!!!!");
 
- /**
+/**
   * Hot  Module Replacement- HMR
   * File Watchers Algo
   * Bundling
@@ -39,7 +40,7 @@ import Shimmer from './components/Shimmer';
 
 */
 
- /**
+/**
    * Header
     * Logo
     * Nav items(right side)
@@ -64,7 +65,7 @@ import Shimmer from './components/Shimmer';
 // you receive parameters
 
 // props = properties
- // I want my header footer comes in all pages and for all otthers pages come from outlet
+// I want my header footer comes in all pages and for all otthers pages come from outlet
 
 //One bundle will not be ggod for large application
 // how we split bundler
@@ -78,81 +79,93 @@ import Shimmer from './components/Shimmer';
 // dynamic import
 //for example in Swiggy Instamart is different bundle
 
-
-
 // Now will do dynamic importing using lazy() or ondemand import or code splitting or bundle chunking
-const Instamart = lazy(() => import('./components/Instamart')); // which gives dynamic importing
+const Instamart = lazy(() => import("./components/Instamart")); // which gives dynamic importing
 //Upon On loading -> upon render -> react will suspend the loading
 
-const About = lazy(() => import('./components/About'));
+const About = lazy(() => import("./components/About"));
 
 const AppLayout = () => {
   // const About = lazy(() => import('./components/About'));    ---------->  Never do this..............
   const [userInfo, setUserInfo] = useState({
-    userName: "Namaste React",
-    email: "support@namastedev.com"
+    name: "Namaste React1",
+    email: "support@namastedev.com",
   });
 
-  return(
-    <React.Fragment>
-      <Header />
-      {/* <About />
-      <Contact />
-      <Body /> //Outlet - the content inside outlet, outlet render according to routes
-      <Cart /> */}
-      <Outlet />
-      <Footer />
-    </React.Fragment>
-  )
-}
+  useEffect(() => {
+    setUserInfo(userInfo);
+  }, []);
+
+  return (
+    // It overrides the default value of context
+    <userContext.Provider value={{ user: userInfo, setUserInfo: setUserInfo }}> 
+      <React.Fragment>
+        <Header />
+        {/* <About />
+        <Contact />
+        <Body /> //Outlet - the content inside outlet, outlet render according to routes
+        <Cart /> */}
+        <Outlet />
+        <Footer />
+      </React.Fragment>
+    </userContext.Provider>
+  );
+};
 // createBrowserRouter is a function
 const appRouter = createBrowserRouter([
-    {
-      path: '/',
-      element: <AppLayout />,
-      errorElement: <Error />,
-      children: [
-        {
-          path: '/',
-          element: <Body />
-        },
-        {
-          path: '/about',
-          element: <Suspense fallback={<h1>Please wait a moment...</h1>}><About /></Suspense>,
-          children: [
-            {
-              path: 'profile', /// '/profile' ---> It means react router dom think http://localhost:3000/profile
-              element: <ProfileClass />
-            }
-          ]
-        },
-        {
-          path: '/contact',
-          element: <Contact />
-        },
-        {
-          path: '/cart',
-          element: <Cart />
-        },
-        {
-          path: '/resturants/:id',
-          element: <ResturantMenu />
-        },
-        {
-          path: '/login',
-          element: <Login />
-        },
-        {
-          path: '/instamart',
-          element: <Suspense fallback={<Shimmer />}><Instamart /></Suspense> // fallback will show shiffer effect until and unless our instamart load
-        }
-      ]
-    }
-  ]
-)
+  {
+    path: "/",
+    element: <AppLayout />,
+    errorElement: <Error />,
+    children: [
+      {
+        path: "/",
+        element: <Body />,
+      },
+      {
+        path: "/about",
+        element: (
+          <Suspense fallback={<h1>Please wait a moment...</h1>}>
+            <About />
+          </Suspense>
+        ),
+        children: [
+          {
+            path: "profile", /// '/profile' ---> It means react router dom think http://localhost:3000/profile
+            element: <ProfileClass />,
+          },
+        ],
+      },
+      {
+        path: "/contact",
+        element: <Contact />,
+      },
+      {
+        path: "/cart",
+        element: <Cart />,
+      },
+      {
+        path: "/resturants/:id",
+        element: <ResturantMenu />,
+      },
+      {
+        path: "/login",
+        element: <Login />,
+      },
+      {
+        path: "/instamart",
+        element: (
+          <Suspense fallback={<Shimmer />}>
+            <Instamart />
+          </Suspense>
+        ), // fallback will show shiffer effect until and unless our instamart load
+      },
+    ],
+  },
+]);
 
- const root = ReactDOM.createRoot(document.getElementById("root"));
- root.render(<RouterProvider router={appRouter} />);
+const root = ReactDOM.createRoot(document.getElementById("root"));
+root.render(<RouterProvider router={appRouter} />);
 //  root.render(HeadComponent1());
 
 /**
