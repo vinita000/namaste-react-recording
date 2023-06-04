@@ -1,8 +1,9 @@
-import { useState, useContext } from "react";
+import { useState, useContext, useEffect } from "react";
 import Logo from '../assets/img/food_villa.jpeg';
 import { Link } from 'react-router-dom'
 import useOnline from "../utils/useOnline";
 import userContext from "../utils/userContext";
+import { useSelector } from "react-redux";
 // SPA - Single page Application
 // Two types of routing - client side and server side routing
 
@@ -17,6 +18,12 @@ const Header = () => {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const isOnline = useOnline();
   const { user }= useContext(userContext);
+  const cartItems = useSelector((store) => store.cart.items); // useSelector direclty provide store
+
+  useEffect(() => {
+    localStorage.setItem('cartItems', JSON.stringify(cartItems));
+  }, [cartItems]);
+
 
   const handleLogout = () => {
     setIsLoggedIn(true);
@@ -31,8 +38,8 @@ const Header = () => {
           {/* <a href='/about'><li>About Us</li></a> */}
           <li className="px-2"><Link to='/about'>About us</Link></li>
           <li className="px-2"><Link>Contact Us</Link></li>
-          <li className="px-2"><Link>Cart</Link></li>
           <li className="px-2"><Link to='/instamart'>Instamart</Link></li>
+          <li className="px-2"><Link to='/cart'> Cart- {cartItems.length} Items </Link></li>
         </ul>
       </div>
       {/* <h1>{isOnline ? 'you r online..': 'oops you r offline..'}</h1> */}

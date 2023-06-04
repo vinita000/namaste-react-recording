@@ -112,9 +112,9 @@ const Body = () => {
             return <ResturantCard key={restro.data.id} {...restro.data}/>;
         })
         } */} 
-        {filteredResturants && filteredResturants.map((restro, index) => {
+        {filteredResturants && filteredResturants.map((restro) => {
           return <Link to={"/resturants/"+restro.data.id}>
-            <ResturantCard key={index} {...restro.data} />
+            <ResturantCard key={restro.data.id} {...restro.data} />
           </Link>;
         })}
       </div>

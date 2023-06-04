@@ -15,6 +15,8 @@ import ProfileClass from "./components/ProfileClass";
 import Shimmer from "./components/Shimmer";
 import userContext from "./utils/userContext";
 // import Instamart from './components/Instamart';
+import store from './utils/store';
+import { Provider } from "react-redux";
 
 // const heading = React.createElement('h1', null, "Namaste Everyone Recording!!!!");
 
@@ -98,17 +100,19 @@ const AppLayout = () => {
 
   return (
     // It overrides the default value of context
-    <userContext.Provider value={{ user: userInfo, setUserInfo: setUserInfo }}> 
-      <React.Fragment>
-        <Header />
-        {/* <About />
-        <Contact />
-        <Body /> //Outlet - the content inside outlet, outlet render according to routes
-        <Cart /> */}
-        <Outlet />
-        <Footer />
-      </React.Fragment>
-    </userContext.Provider>
+    <Provider store={store}>
+      <userContext.Provider value={{ user: userInfo, setUserInfo: setUserInfo }}> 
+        <React.Fragment>
+          <Header />
+          {/* <About />
+          <Contact />
+          <Body /> //Outlet - the content inside outlet, outlet render according to routes
+          <Cart /> */}
+          <Outlet />
+          <Footer />
+        </React.Fragment>
+      </userContext.Provider>
+    </Provider>
   );
 };
 // createBrowserRouter is a function
