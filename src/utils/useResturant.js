@@ -9,8 +9,8 @@ const useResturant = (id) => {
 
   async function getResturantInfo() {
     console.log(id);
-    const data = await fetch(MENU_URL+id)
-    const json = await data.json();
+    const data = await fetch(MENU_URL+id) // return promise
+    const json = await data.json(); // return promise
     console.log(json.data.cards)
     // console.log(Object.values(json.data.cards[2].groupedCard.cardGroupMap.REGULAR.cards[1].card.card.itemCards))
     setResturant(json.data.cards)

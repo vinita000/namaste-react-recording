@@ -10,7 +10,7 @@ import { useSelector } from "react-redux";
 export const Title = () => (
   <a href='/'>
     {/* <img alt='logo' className='logo' src='https://png.pngtree.com/png-clipart/20190516/original/pngtree-food-logo-vector-design.-restaurant-and-cafe-logo.-png-image_3628304.jpg' /> */}
-    <img alt='logo' className="h-28 p-2" src={Logo} />
+    <img data-testid="logo" alt='logo' className="h-28 p-2" src={Logo} />
   </a>
 )
 
@@ -39,11 +39,11 @@ const Header = () => {
           <li className="px-2"><Link to='/about'>About us</Link></li>
           <li className="px-2"><Link>Contact Us</Link></li>
           <li className="px-2"><Link to='/instamart'>Instamart</Link></li>
-          <li className="px-2"><Link to='/cart'> Cart- {cartItems.length} Items </Link></li>
+          <li className="px-2"><Link data-testid="cart" to='/cart'> Cart- {cartItems.length} Items </Link></li>
         </ul>
       </div>
       {/* <h1>{isOnline ? 'you r online..': 'oops you r offline..'}</h1> */}
-      { isOnline ? <h1 className="p-1- font-bold text-red-900">Welocme, you r online {user.name}</h1> : <h1 className="p-1- font-bold text-red-900">oops!!! you r offline</h1> }
+      { isOnline ? <h1 data-testid="online-test" className="p-1- font-bold text-red-900">Welocme, you r online {user.name}</h1> : <h1 data-testId="offline-test" className="p-1- font-bold text-red-900">oops!!! you r offline</h1> }
       {isLoggedIn ? (
         <button onClick={handleLogout}>Logout</button>
       ) : (

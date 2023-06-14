@@ -4,7 +4,7 @@ const Shimmer = () => {
   // return <ShimmerSimpleGallery card imageHeight={340} />
   // custom shimmer
   return (
-    <div className="restro-list">
+    <div data-testid="shimmer" className="restro-list">
       {Array(10).fill('').map((e, index)=>(<div className="shimmer-card" key={index}></div>))}
     </div>
   )

@@ -12,7 +12,7 @@ const ResturantMenu = () => {
   // how to read dynamic params url
   const params = useParams();
   // console.log("id1", params.id)
-  const [id] = params.id  // this params id pass in url params = { id: 1234 }
+  // const [id] = params.id  // this params id pass in url params = { id: 1234 }
   // console.log("id",id)
 
   //Custom hook for get restro by passing resId = id
@@ -50,7 +50,7 @@ const ResturantMenu = () => {
       </div>
       <div className="menu-item">
         <h1>Menu:</h1>
-        <ul>
+        <ul data-testid="menu">
           {resturant[2]?.groupedCard?.cardGroupMap?.REGULAR?.cards[1]?.card?.card?.itemCards &&
             Object.values(resturant[2]?.groupedCard?.cardGroupMap?.REGULAR?.cards[1]?.card?.card?.itemCards).map((item, index) => (
               <div>
@@ -61,7 +61,7 @@ const ResturantMenu = () => {
                 <h4>Addons: {item.card.info.addons && item.card.info.addons.map((e)=>(
                   <li>{e.groupName}</li>
                 ))}</h4>
-                 <button className="m-2 p-2 bg-green-400" onClick={() => addFoodItem(item.card.info)}>Add item</button> - <button className="m-2 p-2 bg-red-400" onClick={() => removeFoodItem(item.card.info)}>Remove item</button>
+                 <button data-testid="addBtn" className="m-2 p-2 bg-green-400" onClick={() => addFoodItem(item.card.info)}>Add item</button> - <button className="m-2 p-2 bg-red-400" onClick={() => removeFoodItem(item.card.info)}>Remove item</button>
               </div>
             ))}
             {console.log(resturant[2]?.groupedCard?.cardGroupMap?.REGULAR?.cards[1]?.card?.card?.itemCards)}

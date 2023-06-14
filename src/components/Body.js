@@ -2,9 +2,9 @@ import ResturantCard from "./ResturantCard";
 import resturantList from "../constants";
 import { useState, useEffect, useContext } from "react";
 import Shimmer from "./Shimmer";
-import { Link } from 'react-router-dom'
+import { Link } from "react-router-dom";
 import { filterData } from "../utils/helper";
-import useResturantList from '../utils/useResturantList'
+import useResturantList from "../utils/useResturantList";
 import useOnline from "../utils/useOnline";
 import userContext from "../utils/userContext";
 //...restro.data.data = It is spread operator
@@ -34,7 +34,8 @@ const Body = () => {
   // here my useeffect depend upon searchText changes thats why we pass serachtext in array = [searchText]
 
   // custom hooks for fetching resturants
-  const [allResturants, filteredResturants, setFilteredResturants] = useResturantList([])
+  const [allResturants, filteredResturants, setFilteredResturants] =
+    useResturantList([]);
 
   //here render called first and useEffect called after component render
   //empty dependency array - useEffect call after render once
@@ -43,13 +44,18 @@ const Body = () => {
   // not render component(early return)
   if (!allResturants) return null;
 
-  if (filteredResturants.length === 0 && allResturants.length > 0) return <h1>No resturant found...</h1>;
+  if (filteredResturants.length === 0 && allResturants.length > 0)
+    return <h1>No resturant found...</h1>;
 
   // checking online or not
   const isOnline = useOnline();
   console.log("isOnline", isOnline);
-  if(!isOnline){
-      return <h1><span class="dot"></span>Offline, please check your internet connection!</h1>
+  if (!isOnline) {
+    return (
+      <h1>
+        <span class="dot"></span>Offline, please check your internet connection!
+      </h1>
+    );
   }
 
   return allResturants.length === 0 ? (
@@ -58,6 +64,7 @@ const Body = () => {
     <>
       <div className="search-container p-5 bg-pink-50 my-2">
         <input
+          data-testid="search-input"
           type="text"
           className="focus:bg-gray-100 p-2 m-2"
           placeholder="search"
@@ -69,6 +76,7 @@ const Body = () => {
           }}
         />
         <button
+          data-testid="search-btn"
           className="search-btn px-5 mx-5 bg-sky-500 hover:bg-sky-700 text-white rounded-lg"
           // style={{backgroundColor: 'green'}}
           onClick={() => {
@@ -76,31 +84,36 @@ const Body = () => {
             // const filterList = resturants.filter((res)=> res.data.data.name == searchText);
             // setResturants(filterList) // update state
             // console.log(filterList)
-            
+
             const data = filterData(searchText, allResturants);
             // console.log(data);
             setFilteredResturants(data); //update state resturants
-
           }}
         >
           Search
         </button>
-        <input value={user.name} onChange={(e) => {
-          setUserInfo({
-            ...user,
-            name: e.target.value
-          });
-        }}/>
+        <input
+          value={user.name}
+          onChange={(e) => {
+            setUserInfo({
+              ...user,
+              name: e.target.value,
+            });
+          }}
+        />
 
-        <input value={user.email} onChange={(e) => {
-          setUserInfo({
-            ...user,
-            email: e.target.value
-          });
-        }}/>
+        <input
+          value={user.email}
+          onChange={(e) => {
+            setUserInfo({
+              ...user,
+              email: e.target.value,
+            });
+          }}
+        />
       </div>
-      
-      <div className="flex flex-wrap">
+
+      <div className="flex flex-wrap" data-testid="resturant-list">
         {/* <h1>{click}</h1> */}
         {/* <h1>{searchText}</h1> */}
         {/* { resturantList.map((restro, key)=>(
@@ -111,12 +124,15 @@ const Body = () => {
           // console.log("cheking",restro.data);
             return <ResturantCard key={restro.data.id} {...restro.data}/>;
         })
-        } */} 
-        {filteredResturants && filteredResturants.map((restro) => {
-          return <Link to={"/resturants/"+restro.data.id}>
-            <ResturantCard key={restro.data.id} {...restro.data} />
-          </Link>;
-        })}
+        } */}
+        {filteredResturants &&
+          filteredResturants.map((restro, index) => {
+            return (
+              <Link to={"/resturants/" + restro.data.id} key={restro.data.id}>
+                <ResturantCard {...restro.data} />
+              </Link>
+            );
+          })}
       </div>
     </>
     //index is valid key
@@ -124,7 +140,6 @@ const Body = () => {
 };
 
 export default Body;
-
 
 // package for ui
 //base ui
