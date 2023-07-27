@@ -19,10 +19,12 @@ const useResturantList = () => {
     try {
       const data = await fetch(RESTURANT_LIST);
       const json = await data.json();
+
+      console.log("Swiggy Response", json.data?.cards[5]?.card?.card?.gridElements?.infoWithStyle?.restaurants);
       // console.log(json.data.cards[2].data.data.cards);
       // optional chaining ==> if anything undefined returns nil
-      setFilteredResturants(json?.data?.cards[2]?.data?.data?.cards);
-      setAllResturants(json?.data?.cards[2]?.data?.data?.cards);
+      setFilteredResturants(json.data?.cards[5]?.card?.card?.gridElements?.infoWithStyle?.restaurants);
+      setAllResturants(json.data?.cards[5]?.card?.card?.gridElements?.infoWithStyle?.restaurants);
     } catch (e) {
       console.error(e);
       return null;

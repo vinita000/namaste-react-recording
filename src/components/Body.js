@@ -36,7 +36,8 @@ const Body = () => {
   // custom hooks for fetching resturants
   const [allResturants, filteredResturants, setFilteredResturants] =
     useResturantList([]);
-
+  console.log("allResturants", allResturants);
+  console.log("filteredResturants", filteredResturants);
   //here render called first and useEffect called after component render
   //empty dependency array - useEffect call after render once
   // [searchText] with data inside dependency array - once after render + every time after re render wheny my searchText changes
@@ -86,7 +87,9 @@ const Body = () => {
             // console.log(filterList)
 
             const data = filterData(searchText, allResturants);
-            // console.log(data);
+            console.log("data", data);
+            console.log("searchText", searchText);
+            console.log("allResturants", allResturants);
             setFilteredResturants(data); //update state resturants
           }}
         >
@@ -128,8 +131,8 @@ const Body = () => {
         {filteredResturants &&
           filteredResturants.map((restro, index) => {
             return (
-              <Link to={"/resturants/" + restro.data.id} key={restro.data.id}>
-                <ResturantCard {...restro.data} />
+              <Link to={"/resturants/" + restro.info.id} key={restro.info.id}>
+                <ResturantCard {...restro.info} />
               </Link>
             );
           })}

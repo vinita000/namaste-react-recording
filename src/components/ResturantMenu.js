@@ -53,7 +53,7 @@ const ResturantMenu = () => {
         <ul data-testid="menu">
           {resturant[2]?.groupedCard?.cardGroupMap?.REGULAR?.cards[1]?.card?.card?.itemCards &&
             Object.values(resturant[2]?.groupedCard?.cardGroupMap?.REGULAR?.cards[1]?.card?.card?.itemCards).map((item, index) => (
-              <div>
+              <div key={item?.card?.info?.id}>
                 <li key={item?.card?.info?.id}>{item?.card?.info?.name}</li>
                 <li><img className= "m-2 p-2 h-50 w-20 " src={IMG_CDN_URL+item?.card?.info?.imageId}/></li>
                 <li>{item.card.info.description}</li>

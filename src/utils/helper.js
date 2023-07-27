@@ -5,7 +5,8 @@ export function filterData(searchText, resturants) {
   //    return resturants;
   // }else {
   const filterData = resturants.filter((res) =>
-    res?.data?.name?.toLowerCase().includes(searchText?.toLowerCase())
+    // console.log("res", res.info.name.toLowerCase().includes(searchText?.toLowerCase()))
+    res?.info?.name?.toLowerCase().includes(searchText?.toLowerCase())
   );
   // }
   return filterData
